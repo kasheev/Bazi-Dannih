@@ -1,0 +1,50 @@
+﻿@model BasaDate.Models.personal_computer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>personal_computer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.keyboard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.keyboard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.computer_mouse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.computer_mouse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.monitor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.monitor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.software.os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.software.os)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

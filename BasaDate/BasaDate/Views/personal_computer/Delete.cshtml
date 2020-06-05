@@ -1,0 +1,56 @@
+﻿@model BasaDate.Models.personal_computer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>personal_computer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.keyboard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.keyboard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.computer_mouse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.computer_mouse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.monitor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.monitor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.software.os)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.software.os)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
