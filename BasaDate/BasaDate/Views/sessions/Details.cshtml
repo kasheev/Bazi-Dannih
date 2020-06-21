@@ -1,17 +1,17 @@
 ﻿@model BasaDate.Models.session
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Подробнее";
 }
 
-<h2>Details</h2>
+<h2>Подробнее</h2>
 
 <div>
-    <h4>session</h4>
+    <h4>Сеансы</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.date)
+            <p>Дата</p>
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.start_time)
+            <p>Начало</p>
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.end_time)
+            <p>Конец</p>
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.admin.full_name)
+            <p>Администратор</p>
         </dt>
 
         <dd>
@@ -43,15 +43,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.personal_computer.keyboard)
+            <p>Номер компьютера</p>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.personal_computer.keyboard)
+            @Html.DisplayFor(model => model.id_personal_computer)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.service.title)
+            <p>Услуга</p>
         </dt>
 
         <dd>
@@ -59,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.visitor.full_name)
+            <p>Посетитель</p>
         </dt>
 
         <dd>
@@ -69,6 +69,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Назад", "Index")
 </p>

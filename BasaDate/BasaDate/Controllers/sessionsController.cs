@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BasaDate.Models;
+using Npgsql;
 
 namespace BasaDate.Controllers
 {
@@ -15,6 +16,7 @@ namespace BasaDate.Controllers
         private Model1Container db = new Model1Container();
 
         // GET: sessions
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             var sessions = db.sessions.Include(s => s.admin).Include(s => s.personal_computer).Include(s => s.service).Include(s => s.visitor);
@@ -22,6 +24,7 @@ namespace BasaDate.Controllers
         }
 
         // GET: sessions/Details/5
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +40,7 @@ namespace BasaDate.Controllers
         }
 
         // GET: sessions/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.id_admin = new SelectList(db.admins, "id", "full_name");
@@ -51,6 +55,7 @@ namespace BasaDate.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "id,id_visitors,id_personal_computer,id_services,id_admin,date,start_time,end_time")] session session)
         {
             if (ModelState.IsValid)
@@ -67,7 +72,24 @@ namespace BasaDate.Controllers
             return View(session);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+        public ActionResult Index(string search)
+        {
+         
+             var result = db.sessions
+                .Where(a => a.visitor.full_name.ToLower().Contains(search.ToLower())
+                || a.admin.full_name.ToLower().Contains(search.ToLower())
+                || a.service.title.ToLower().Contains(search.ToLower())
+                || a.date.ToString().Contains(search))
+                .ToList();
+            return View(result);
+        }
+
+
         // GET: sessions/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,6 +113,7 @@ namespace BasaDate.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "id,id_visitors,id_personal_computer,id_services,id_admin,date,start_time,end_time")] session session)
         {
             if (ModelState.IsValid)
@@ -107,6 +130,7 @@ namespace BasaDate.Controllers
         }
 
         // GET: sessions/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,6 +148,7 @@ namespace BasaDate.Controllers
         // POST: sessions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             session session = db.sessions.Find(id);

@@ -1,18 +1,18 @@
 ﻿@model BasaDate.Models.session
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Удаление";
 }
 
-<h2>Delete</h2>
+<h2>Удаление</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Вы уверены, что хотите удалить?</h3>
 <div>
-    <h4>session</h4>
+    <h4>Сеансы</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.date)
+            <p>Дата</p>
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.start_time)
+            <p>Начало</p>
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.end_time)
+            <p>Конец</p>
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.admin.full_name)
+            <p>Администратор</p>
         </dt>
 
         <dd>
@@ -44,15 +44,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.personal_computer.keyboard)
+            <p>Номер компьютера</p>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.personal_computer.keyboard)
+            @Html.DisplayFor(model => model.id_personal_computer)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.service.title)
+            <p>Услуга</p>
         </dt>
 
         <dd>
@@ -60,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.visitor.full_name)
+            <p>Посетитель</p>
         </dt>
 
         <dd>
@@ -73,8 +73,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
         </div>
     }
 </div>

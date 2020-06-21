@@ -1,17 +1,17 @@
 ﻿@model BasaDate.Models.software
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Подробнее";
 }
 
-<h2>Details</h2>
+<h2>Подробнее</h2>
 
 <div>
-    <h4>software</h4>
+    <h4>ПО</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.os)
+            <p>Операционная система</p>
         </dt>
 
         <dd>
@@ -19,8 +19,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.programs)
-        </dt>
+            <p>Программы</p>
+       </dt>
 
         <dd>
             @Html.DisplayFor(model => model.programs)
@@ -29,6 +29,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Изменение", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Назад", "Index")
 </p>

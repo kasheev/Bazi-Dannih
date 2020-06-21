@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BasaDate.Models;
+using Npgsql;
 
 namespace BasaDate.Controllers
 {
@@ -15,6 +16,7 @@ namespace BasaDate.Controllers
         private Model1Container db = new Model1Container();
 
         // GET: admins
+        
         public ActionResult Index()
         {
             return View(db.admins.ToList());
@@ -36,6 +38,7 @@ namespace BasaDate.Controllers
         }
 
         // GET: admins/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace BasaDate.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "id,full_name")] admin admin)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace BasaDate.Controllers
         }
 
         // GET: admins/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace BasaDate.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "id,full_name")] admin admin)
         {
             if (ModelState.IsValid)
@@ -89,7 +95,20 @@ namespace BasaDate.Controllers
             return View(admin);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(string search)
+        {
+    
+            var result = db.admins
+               .Where(a => a.full_name.ToLower().Contains(search.ToLower()))
+               .ToList();
+            return View(result);
+        }
+
+
         // GET: admins/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +124,7 @@ namespace BasaDate.Controllers
         }
 
         // POST: admins/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

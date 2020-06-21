@@ -15,6 +15,7 @@ namespace BasaDate.Controllers
         private Model1Container db = new Model1Container();
 
         // GET: personal_computer
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             var personal_computer = db.personal_computer.Include(p => p.software);
@@ -22,6 +23,7 @@ namespace BasaDate.Controllers
         }
 
         // GET: personal_computer/Details/5
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace BasaDate.Controllers
         }
 
         // GET: personal_computer/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.id_software = new SelectList(db.softwares, "id", "os");
@@ -48,8 +51,10 @@ namespace BasaDate.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "id,id_software,keyboard,computer_mouse,monitor")] personal_computer personal_computer)
         {
+
             if (ModelState.IsValid)
             {
                 db.personal_computer.Add(personal_computer);
@@ -62,6 +67,7 @@ namespace BasaDate.Controllers
         }
 
         // GET: personal_computer/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +88,7 @@ namespace BasaDate.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "id,id_software,keyboard,computer_mouse,monitor")] personal_computer personal_computer)
         {
             if (ModelState.IsValid)
@@ -94,7 +101,21 @@ namespace BasaDate.Controllers
             return View(personal_computer);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+        public ActionResult Index(string search)
+        {
+         
+             var result = db.personal_computer
+                .Where(a => a.keyboard.ToLower().Contains(search.ToLower())
+                || a.software.os.ToLower().Contains(search.ToLower()))
+                .ToList();
+            return View(result);
+        }
+
         // GET: personal_computer/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +131,7 @@ namespace BasaDate.Controllers
         }
 
         // POST: personal_computer/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

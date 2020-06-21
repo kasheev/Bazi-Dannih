@@ -1,17 +1,17 @@
 ﻿@model BasaDate.Models.admin
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Подробнее";
 }
 
-<h2>Details</h2>
+<h2>Подробнее</h2>
 
 <div>
-    <h4>admin</h4>
+    <h4>Администраторы</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.full_name)
+            <p>Администратор</p>
         </dt>
 
         <dd>
@@ -21,6 +21,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (User.IsInRole("admin")) {@Html.ActionLink("Изменение", "Edit", new { id = Model.id })} |
+    @Html.ActionLink("Назад", "Index")
 </p>

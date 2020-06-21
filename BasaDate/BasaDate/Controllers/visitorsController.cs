@@ -89,6 +89,18 @@ namespace BasaDate.Controllers
             return View(visitor);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(string search)
+        {
+
+            var result = db.visitors
+               .Where(a => a.full_name.ToLower().Contains(search.ToLower()))
+               .ToList();
+            return View(result);
+        }
+
+
         // GET: visitors/Delete/5
         public ActionResult Delete(int? id)
         {

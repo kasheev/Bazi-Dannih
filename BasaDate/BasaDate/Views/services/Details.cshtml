@@ -1,25 +1,24 @@
 ﻿@model BasaDate.Models.service
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Подробнее";
 }
 
-<h2>Details</h2>
+<h2>Подробнее</h2>
 
 <div>
-    <h4>service</h4>
+    <h4>Услуги</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.title)
-        </dt>
+            <p>Название</p>
 
         <dd>
             @Html.DisplayFor(model => model.title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.description)
+            <p>Описание</p>
         </dt>
 
         <dd>
@@ -29,6 +28,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (User.IsInRole("admin")) {@Html.ActionLink("Изменить", "Edit", new { id = Model.id })} |
+    @Html.ActionLink("Назад", "Index")
 </p>

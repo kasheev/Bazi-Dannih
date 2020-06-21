@@ -1,17 +1,25 @@
 ﻿@model BasaDate.Models.personal_computer
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Подробнее";
 }
 
-<h2>Details</h2>
+<h2>Подбробнее</h2>
 
 <div>
-    <h4>personal_computer</h4>
+    <h4>ПК</h4>
     <hr />
     <dl class="dl-horizontal">
+         <dt>
+            <p>Операционная система</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.software.os)
+        </dd>
+        
         <dt>
-            @Html.DisplayNameFor(model => model.keyboard)
+            <p>Клавиатура</p>
         </dt>
 
         <dd>
@@ -19,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.computer_mouse)
+            <p>Мышь</p>
         </dt>
 
         <dd>
@@ -27,24 +35,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.monitor)
+            <p>Монитор</p>
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.monitor)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.software.os)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.software.os)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Изменение", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Назад", "Index")
 </p>
